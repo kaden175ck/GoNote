@@ -1,0 +1,22 @@
+syntax="proto3";
+
+package service.com;
+
+option go_package = "protoc/service;service";
+
+import "dao/product.proto";   
+
+message rec_request{  // 生成go代码时，蛇形将转为驼峰
+    dao.com.production req = 1;
+}
+
+message rec_response{
+    repeated int64 results = 1;
+}
+
+service rec{
+    rpc home(rec_request) returns (rec_response);
+}
+
+// protoc --go_out=. --proto_path=./protoc --proto_path="D:/Program Files/protoc-27.3-win64/include/google/protobuf"  --go_opt=Mdao/product.proto=a/b/c/dao service/rec.proto
+// protoc --go_out=. --go-grpc_out=. --proto_path=./protoc --proto_path="D:/Program Files/protoc-27.3-win64/include/google/protobuf"  --go_opt=Mdao/product.proto=a/b/c/dao service/rec.proto   // --go-grpc_out 会把.proto文件里的service转成.go文件里的interface

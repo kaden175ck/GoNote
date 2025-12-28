@@ -1,0 +1,13 @@
+syntax="proto3";
+
+package dqq.rec;
+
+option go_package="idl/service;user_service";
+
+import "user.proto";
+
+message Student{
+  dqq.idl.LoginRequest teacher = 1;
+}
+
+// protoc --go_out=./grpc/live --proto_path=./grpc/live/idl student.proto

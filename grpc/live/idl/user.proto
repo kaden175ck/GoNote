@@ -1,0 +1,36 @@
+syntax="proto3";
+
+package dqq.idl;
+
+option go_package="idl/service;user_service";
+
+message LoginRequest{
+  string name=9;
+  string password=5;
+}
+
+message Status{
+  int64 code=1;
+  string messgae=2;
+}
+
+message LoginResp{
+  Status status=1;
+}
+
+message RegistRequest{
+  string name=9;
+  string password=5;
+}
+
+message RegistResp{
+  Status status=1;
+  int64 userid=3;
+}
+
+service user{
+  rpc Regist(RegistRequest) returns (RegistResp);
+  rpc Login(LoginRequest) returns (LoginResp);
+}
+
+// protoc --go_out=./grpc/live --go-grpc_out=./grpc/live --proto_path=./grpc/live/idl user.proto

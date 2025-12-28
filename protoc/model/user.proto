@@ -1,0 +1,21 @@
+syntax="proto3";
+
+package model.com;    // 当其他proto文件引用此proto文件时，需要使用该package。.不是必须要包含的。如果没人引用此proto文件，package可以不写
+
+// option go_package = "protoc/model;model";  // 分号左边是输出路径（相对于--go_out）,分号右边中go代码的package
+option go_package = "./model;model";   // 分号左边的路径至少需要包含一个.或一个/
+
+// import "google/protobuf/timestamp.proto";  
+import "timestamp.proto";     // timestamp.proto前没带路径有一个小风险，如果多个--proto_path下都有timestamp.proto这个文件，就无法区分了
+
+message user{   //转为go代码时，user首字母会变为大写
+    google.protobuf.Timestamp birthday = 1;   //转为go代码时，birthday首字母会变为大写。Timestamp前面需要加上它的package名称
+}
+
+// protoc --proto_path=./protoc --proto_path="D:/Program Files/protoc-27.3-win64/include" --go_out=. model/user.proto   // --proto_path可以有多个
+// protoc --proto_path=./protoc/model --proto_path="D:/Program Files/protoc-27.3-win64/include" --go_out=. user.proto   // user.proto前没带路径有一个小风险，如果多个--proto_path下都有user.proto这个文件，就无法区分了
+
+// protoc --proto_path=./protoc/model --proto_path="D:/Program Files/protoc-27.3-win64/include/google/protobuf" --go_out=./protoc user.proto
+// protoc --proto_path=./protoc --proto_path="D:/Program Files/protoc-27.3-win64/include/google/protobuf" --go_out=./protoc model/user.proto
+
+// cd protoc && go mod tidy

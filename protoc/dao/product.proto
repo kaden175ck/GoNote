@@ -1,0 +1,15 @@
+syntax="proto3";
+
+package dao.com;
+
+option go_package = "protoc/dao;dao";
+
+import "model/user.proto";   
+
+message production{
+    model.com.user productor = 1;  // user前面需要加上它的package名称
+}
+
+// protoc --go_out=. --proto_path=./protoc --proto_path="D:/Program Files/protoc-27.3-win64/include/google/protobuf"  --go_opt=Mmodel/user.proto=a/b/c/model dao/product.proto   
+// 由于在user.proto里引用了timestamp.proto，所以此处需要在--proto_path里指明timestamp.proto所在的路径
+// --go_opt=M M表示Modify修改，指示.proto文件里的imoprt转成.go文件后import该怎么写。--go_opt=M可以有多个
