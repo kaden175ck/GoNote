@@ -1,18 +1,18 @@
 package main
 
-import "dqq/go/basic/concurrence"
+import "shy/go/basic/concurrence"
 
 func main() {
 	// concurrence.SimpleGoroutine()
 	// concurrence.SubRoutine()
-	// concurrence.WaitGroup()
+	concurrence.WaitGroup()
 	// concurrence.Atomic()
 	// concurrence.Lock()
 	// concurrence.ReentranceRLock(3)
 	// concurrence.ReentranceWLock(3)
 	// concurrence.WLockExclusion()
 	//concurrence.RLockExclusion()
-	concurrence.LockQueue()
+	// concurrence.LockQueue()
 	// concurrence.ReadWriteRace()
 	// concurrence.CollectionSafety()
 	// concurrence.ServiceMain()

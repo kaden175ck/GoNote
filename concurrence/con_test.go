@@ -1,7 +1,7 @@
 package concurrence_test
 
 import (
-	"dqq/go/basic/concurrence"
+	"shy/go/basic/concurrence"
 	"sync"
 	"testing"
 )

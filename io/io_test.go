@@ -1,7 +1,7 @@
 package io_test
 
 import (
-	"dqq/go/basic/io"
+	"shy/go/basic/io"
 	"fmt"
 	"testing"
 	"time"
